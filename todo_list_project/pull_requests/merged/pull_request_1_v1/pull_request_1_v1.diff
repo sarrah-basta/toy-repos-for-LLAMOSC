@@ -1,0 +1,18 @@
+diff --git a/todo/todo.py b/todo/todo.py
+index 634bfb2..f03683e 100644
+--- a/todo/todo.py
++++ b/todo/todo.py
+@@ -19,6 +19,13 @@ class TodoList:
+         tasks = sorted(self.tasks, key=lambda x: ("High", "Medium", "Low").index(x["priority"]))
+         return tasks
+ 
++    def remove_task(self, task_id):
++        if task_id in [task["id"] for task in self.tasks]:
++            self.tasks = [task for task in self.tasks if task["id"] != task_id]
++            return True
++        else:
++            return False
++
+ if __name__ == "__main__":
+     todo = TodoList()
+     todo.add_task("Buy groceries")
